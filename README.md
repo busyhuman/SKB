@@ -1,2 +1,2 @@
 # SKBible
-SungkyulBible
+Read and Search
