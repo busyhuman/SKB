@@ -1,15 +1,15 @@
-// ÆÄÀÏÀ» ¸¸µé±â À§ÇØ »ç¿ëÇÑ ÄÚµå¶ó ´õÀÌ»ó ÄÄÆÄÀÏÇÒ ÇÊ¿ä°¡ ¾ø´Ù.
+// íŒŒì¼ì„ ë§Œë“¤ê¸° ìœ„í•´ ì‚¬ìš©í•œ ì½”ë“œë¼ ë”ì´ìƒ ì»´íŒŒì¼í•  í•„ìš”ê°€ ì—†ë‹¤.
 import java.io.*;
 
 import java.util.*;
 
 public class countBible {
-	// Map ÀÚ·á±¸Á¶¸¦ ÀÌ¿ë. Å°¸¦ StringÀ¸·Î, °ªÀ» Integer·Î
+	// Map ìë£Œêµ¬ì¡°ë¥¼ ì´ìš©. í‚¤ë¥¼ Stringìœ¼ë¡œ, ê°’ì„ Integerë¡œ
 	public static Map<String, Integer> mJang = new HashMap<>();
 	public static Map<String, Integer> mJeol = new HashMap<>();
 
 	public static void main(String[] args) throws IOException {
-		String path = seperateBible.class.getResource("").getPath();	// Àı´ë °æ·Î·Î ÁöÁ¤
+		String path = seperateBible.class.getResource("").getPath();	// ì ˆëŒ€ ê²½ë¡œë¡œ ì§€ì •
 		File dirFile = new File(path + "myBible");
 		File[] fileList = dirFile.listFiles();
 
@@ -17,7 +17,7 @@ public class countBible {
 		File countJeol = new File(path + "countJeol.txt");
 		BufferedWriter writer = new BufferedWriter(new FileWriter(countJeol));
 		
-		// ¸ğµç ÆÄÀÏÀ» µ¹¸é¼­ ÃÖ´ë Àå°ú ±× ÀåÀÇ ÃÖ´ë ÀıÀ» ±¸ÇÑ´Ù.
+		// ëª¨ë“  íŒŒì¼ì„ ëŒë©´ì„œ ìµœëŒ€ ì¥ê³¼ ê·¸ ì¥ì˜ ìµœëŒ€ ì ˆì„ êµ¬í•œë‹¤.
 		for(File file : fileList){
 			String fileName, chapter = "";
 		
@@ -26,35 +26,35 @@ public class countBible {
 			} else{
 				continue;
 			}
-			int now = fileName.length(), maxJang=0, maxJeol=0,dan=1; // ÆÄÀÏÀÇ ¸Ç ³¡ºÎÅÍ ½ÃÀÛÇÑ´Ù. danÀº ´ÜÀ§ÀÌ´Ù. 
-			if(fileName == "KoreanBible.txt") continue;	// ¿øº» ÆÄÀÏÀº °Ç³Ê ¶Ú´Ù.
+			int now = fileName.length(), maxJang=0, maxJeol=0,dan=1; // íŒŒì¼ì˜ ë§¨ ëë¶€í„° ì‹œì‘í•œë‹¤. danì€ ë‹¨ìœ„ì´ë‹¤. 
+			if(fileName == "KoreanBible.txt") continue;	// ì›ë³¸ íŒŒì¼ì€ ê±´ë„ˆ ë›´ë‹¤.
 			
-			while(fileName.charAt(--now) != '.'){ }	// È®ÀåÀÚ ºÎºĞ ¹®ÀÚ´Â °Ç³Ê¶Ú´Ù. Áï txtºÎºĞ
+			while(fileName.charAt(--now) != '.'){ }	// í™•ì¥ì ë¶€ë¶„ ë¬¸ìëŠ” ê±´ë„ˆë›´ë‹¤. ì¦‰ txtë¶€ë¶„
 			
-			while(fileName.charAt(--now) != '_'){	// ¾ğ´õ¹Ù¸¦ ¸¸³¯ ¶§ ±îÁö ÀıÀ» ±¸ÇØÁØ´Ù.
+			while(fileName.charAt(--now) != '_'){	// ì–¸ë”ë°”ë¥¼ ë§Œë‚  ë•Œ ê¹Œì§€ ì ˆì„ êµ¬í•´ì¤€ë‹¤.
 				
 				maxJeol += (fileName.charAt(now) - '0') * dan;
 				dan *= 10;
 			}
 		
 			dan = 1;
-			while(fileName.charAt(--now) != '_'){	// ¾ğ´õ¹Ù¸¦ ¸¸³¯ ¶§ ±îÁö ÀåÀ» ±¸ÇØÁØ´Ù.
+			while(fileName.charAt(--now) != '_'){	// ì–¸ë”ë°”ë¥¼ ë§Œë‚  ë•Œ ê¹Œì§€ ì¥ì„ êµ¬í•´ì¤€ë‹¤.
 				maxJang += (fileName.charAt(now) - '0') * dan;
 				dan *= 10;
 			}
 			now = -1;
-			while(fileName.charAt(++now) != '_'){ // ³ª¸ÓÁö´Â ¼º°æ Á¦¸ñÀ¸·Î ÀúÀåÇÑ´Ù.
+			while(fileName.charAt(++now) != '_'){ // ë‚˜ë¨¸ì§€ëŠ” ì„±ê²½ ì œëª©ìœ¼ë¡œ ì €ì¥í•œë‹¤.
 				chapter += fileName.charAt(now);
 			}
 			
-			// ÃÖ´ë ÀåÀ» ±¸ÇÑ´Ù. key´Â ¼º°æ Á¦¸ñ
+			// ìµœëŒ€ ì¥ì„ êµ¬í•œë‹¤. keyëŠ” ì„±ê²½ ì œëª©
 			if(mJang.containsKey(chapter)){
 				mJang.put(chapter, Math.max(mJang.get(chapter),maxJang));
 			} else{
 				mJang.put(chapter, maxJang);
 			}
 			
-			// ÃÖ´ë ÀıÀ» ±¸ÇÑ´Ù. key´Â ¼º°æÁ¦¸ñ_Àå
+			// ìµœëŒ€ ì ˆì„ êµ¬í•œë‹¤. keyëŠ” ì„±ê²½ì œëª©_ì¥
 			if(mJeol.containsKey(chapter + "_" + maxJang)){
 				mJeol.put(chapter + "_" + maxJang, Math.max(mJeol.get(chapter + "_" + maxJang),maxJeol));
 			} else{
@@ -64,7 +64,7 @@ public class countBible {
 			System.out.println(chapter + " " + maxJang + " " + maxJeol + " " + mJeol.get(chapter+"_"+maxJang));
 		}
 
-		// ¹ØÀ¸·Î ¸ğµÎ ÆÄÀÏ »ı¼º ÄÚµå
+		// ë°‘ìœ¼ë¡œ ëª¨ë‘ íŒŒì¼ ìƒì„± ì½”ë“œ
 		Set<String> keyset = mJang.keySet();
 		Iterator<String> keyIterator = keyset.iterator();
 		while(keyIterator.hasNext()){
