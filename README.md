@@ -1,2 +1,2 @@
 # SKBible
-Read and Search
+자바프로그래밍 프로젝트: 성경 읽기 및 검색
